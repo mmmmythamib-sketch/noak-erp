@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Arabic RTL Print Styling (A4 & A5) */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm 8mm 10mm;
+  }
+
+  html, body {
+    background: white !important;
+    color: #0f172a !important;
+    font-size: 10.5pt !important;
+    line-height: 1.35 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #root, #root > div, main {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: static !important;
+  }
+
+  /* Hide navigation, buttons, sidebars and non-printable elements */
+  .no-print,
+  nav,
+  aside,
+  header,
+  button,
+  .action-gear-menu,
+  .modal-backdrop,
+  ::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* When printing a printable modal, ensure background screen is hidden */
+  body:has(.printable-modal) aside,
+  body:has(.printable-modal) header,
+  body:has(.printable-modal) main {
+    display: none !important;
+  }
+
+  .printable-modal {
+    position: static !important;
+    inset: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    z-index: auto !important;
+  }
+
+  .printable-modal > div {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+
+  /* ------------------------------------------------------------- */
+  /* Single-Page Vouchers (سندات القبض، الصرف، الدفع، فواتير الشراء، قسائم الرواتب) */
+  /* Strict 1-Page Layout Guarantee */
+  /* ------------------------------------------------------------- */
+  .voucher-single-page {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    height: auto !important;
+    max-height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 10pt !important;
+  }
+
+  .voucher-single-page .voucher-header {
+    padding-bottom: 6px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .voucher-single-page .voucher-banner {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .voucher-single-page .voucher-card {
+    padding: 6px 10px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .voucher-single-page .voucher-signatures {
+    padding-top: 8px !important;
+    margin-top: 6px !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .voucher-single-page .signature-line {
+    margin-bottom: 12px !important;
+  }
+
+  /* ------------------------------------------------------------- */
+  /* Tables & Columns Integrity */
+  /* ------------------------------------------------------------- */
+  table {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto;
+    table-layout: auto !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tfoot {
+    display: table-footer-group !important;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  th, td {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .voucher-single-page table th,
+  .voucher-single-page table td {
+    padding: 3px 5px !important;
+    font-size: 9.5pt !important;
+    line-height: 1.25 !important;
+  }
+
+  /* ------------------------------------------------------------- */
+  /* Multi-Page Documents: Quotations & Contracts (عروض الأسعار والعقود) */
+  /* ------------------------------------------------------------- */
+  .multi-page-doc {
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    width: 100% !important;
+  }
+
+  .multi-page-doc .page-break {
+    page-break-before: always !important;
+    break-before: page !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
